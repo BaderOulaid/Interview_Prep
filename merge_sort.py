@@ -1,27 +1,36 @@
 
 # O(nlogn)
 
-
+# We can divide a list in half log2 n times where n is the length of the list.
+# The second process is the merge. Each item in the list will eventually be
+# processed and placed on the sorted list. So the merge operation which results in a
+# list of size n requires n operations. The result of this analysis is that log2 n
+# splits, each of which costs n for a total of nlog2 n operations.
 
 def merge(left, right):
     merged = []
+    i, j = 0, 0 # i is left j is right
 
     print "merging", left, right
-    while len(left) != 0 and len(right) != 0:
-        if left[0] < right[0]:
-            merged.append(left[0])
-            left.remove(left[0])
+
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            merged.append(left[i])
+            i += 1
         else:
-            merged.append(right[0])
-            right.remove(right[0])
+            merged.append(right[j])
+            j += 1
 
 
-    if len(left) == 0:
-        print "left == 0" , right
-        merged += right
-    else:
-        print "right == 0", left
-        merged += left
+    while i < len(left):
+        merged.append(left[i])
+        i += 1
+
+    while j < len(right):
+        merged.append(right[j])
+        j += 1
+
+    print i, j, merged
 
     return merged
 

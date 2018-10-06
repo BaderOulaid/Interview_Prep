@@ -1,0 +1,26 @@
+{
+  "holidays":["Satyurday", "sunday"],
+  "passed": [true, false],
+  "multiples": [[2,3],[3,4]],
+  "employees": [
+                {"name": "adam", "id": 500},
+                {"name": "test", "id": 300}
+                ],
+  "address_object": {"street": "abs", "city": "XYS"}
+}
+
+
+<script>
+  var person = {first:"john", last:"smith", fullname: function(){return(this.first + " " + this.last};}
+
+  document.write(person.fullname())
+</script>
+
+
+{"person":
+  {
+
+  }
+}
+//types:
+// string, numbers, boolean, null, array, object

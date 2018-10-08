@@ -1,0 +1,48 @@
+--todo: selects, join, employee id, query
+--created table within db being used.
+--types:
+--char (fixed length)
+--varchar (variable length)
+--text up to 65k chars
+--blob (binarys)
+--long,medium,tiny text
+--int, float (size, digits), double(size, digit),
+--Date YYYY-MM-DD
+--datetime YYYY-MM-DD HH:MI"SS
+--TIME() HH:MI:SS
+--image
+--query: statement including actins and commands
+--database: a collection of data consisting of a physical file
+--table -> a collection of related data
+--primary key : uniquely identifies an entity in a table
+--RDMBS relational database managment system
+--super key: set of one or more key that can be used to identify a record of a table
+--cnadidate key: set of one of more columns that can identify a record in a table.
+--primary key: only one candidate key can be a primary key
+create database Customer
+--create a database called customer
+
+use Customer
+--switch to customer database
+
+create table Customer
+(
+    FirstName varchar(50),
+    LastName varchar(50),
+    Age int
+)
+create table department(
+    DeptID int PRIMARY KEY, --primary key
+    name varchar(50), NOT NULL.
+    Address varchar(200), NOT NULL)
+)
+
+create table student
+(
+    ID int PRIMARY KEY,
+    RollNo varchar(10),
+    EnrollNo varchar(50) UNIQUE,
+    DeptID int FOREIGN KEY REFERENCES Department(DeptID)
+)
+
+

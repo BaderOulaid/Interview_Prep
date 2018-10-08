@@ -19,14 +19,18 @@
 --super key: set of one or more key that can be used to identify a record of a table
 --cnadidate key: set of one of more columns that can identify a record in a table.
 --primary key: only one candidate key can be a primary key
+--index: create index on last name to speed up a where clause
+
 create database Customer
 --create a database called customer
 
 use Customer
 --switch to customer database
-
+drop table customer
+--primary key identifies row in table
 create table Customer
 (
+    ID int PRIMARY KEY identity(1,1), --start with 1 and increase by 1
     FirstName varchar(50),
     LastName varchar(50),
     Age int
@@ -44,5 +48,62 @@ create table student
     EnrollNo varchar(50) UNIQUE,
     DeptID int FOREIGN KEY REFERENCES Department(DeptID)
 )
+
+
+insert into Customer
+    (FirstName, LastName, Age)
+    values('Joey', 'Smith', 12);
+
+select top (1000) firstname, lastname, age from customer.customer
+
+
+select * from customer
+select firstname from customer
+select firstname, lastname from customer where
+firstname = 'mike' and lastname = 'smith'
+
+select firstname, lastname from customer
+where firstname='mike' and lastname like 'smit%'
+
+update customer set Age = 20 where firstname = 'mike';
+
+delete Customer where firstname = 'mike';
+
+alter table customer
+add City varchar(50);
+
+update customer set city = 'slc' --optional where firstname='mike'
+
+create table Products(
+    product_id int primary key identity(1,1)
+    product_name varchar(50)
+)
+
+alter table product add price float
+
+insert into product product_name, price values('baseball', 195.55)
+
+create table orders(
+    order_id int primary key identity(1,1),
+    CustomerID int FOREIGN KEY references Customer,
+    Product_id int FOREIGN KEY references PRODUCT,
+    order_date DateTime
+)
+
+alter table orders add foreign key (customerID) references customer(customer_id)
+select * from product;
+select * from customer;
+
+insert into orders (orderdate, customerid, productid)
+values ( GetDate(), 1, 2 )
+
+--inner join means everything has to match up
+--this star does all cols from both tables
+select * from orders as o
+inner join products as p on o.order_id = p.product_id
+
+select o.date, p.product_name, p.price, c.* from orders as o
+inner join products as p on o.order_id = p.product_id
+inner join customer as c on o.customer_id = c.customer_id
 
 

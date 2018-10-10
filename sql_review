@@ -103,7 +103,26 @@ select * from orders as o
 inner join products as p on o.order_id = p.product_id
 
 select o.date, p.product_name, p.price, c.* from orders as o
-inner join products as p on o.order_id = p.product_id
+inner join products as p on o.product_id = p.product_id
 inner join customer as c on o.customer_id = c.customer_id
 
 
+select customer.lastname, p.product_name sum(p.price) as [Total Spent]
+from orders
+inner join product on order.product_id = product.product_id
+inner join customer on order.customer_id = customer.customer_id
+groupby customer.lastname, product.product_name
+
+--groupby has to match the select since its a sum
+
+select c.city, sum(p.price), avg(p.price) total, average
+from orders
+inner join product on order.product_id = product.product_id
+inner join customer on order.customer_id = customer.customer_id
+groupby c.city
+order by c.city DESC
+
+select w.emp_name, w.job_name, fro employees w, employees m, where
+w.manager_id = m.emp_id AND w.salary > m.salary
+
+select e.id, e.name, d.dep_name from employees e, dep d where e.dep_id = d.id;
